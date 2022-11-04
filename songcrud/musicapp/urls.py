@@ -1,7 +1,11 @@
 from django.urls import path
+from . views import *
+from rest_framework.routers import DefaultRouter
 
-from .views import index
+router = DefaultRouter()
 
-urlpatterns = [
-    path('', index, name='index')
-]
+router.register(r'artistes', ArtisteViewSet, basename= 'artistes')
+router.register(r'songs', SongViewSet, basename= 'songs')
+router.register(r'lyrics', LyricViewSet, basename= 'lyrics')
+
+urlpatterns = [] + router.urls
